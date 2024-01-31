@@ -40,7 +40,7 @@ div{
 
 :root{
     --green: #43d893;
-    --lightGreen: #d1ffe7;
+    --lightGreen: #d8ffeb;
     --light: #efefef;
     --dark: #191818;
     --grey: #222222;
@@ -219,51 +219,5 @@ footer a i{
 footer .nav a i:hover{
     font-size: 8vw;
 }
-
-
-/* BOXES */
-
-.boxes {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-}
-.boxes a {
-    text-decoration: none;
-}
-.boxes .box {
-    display: flex;
-    flex-direction: column;
-    justify-content: top;
-
-    color: var(--dark);
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: var(--shadow);
-
-    width: 80vw;
-    height: 420px;
-    margin-top: 5vh;
-    padding: 2.5px 5px;
-    overflow: hidden;
-}
-.boxes .box img {
-    border-radius: 6px;
-    max-width: 100%;
-    height: auto;
-    margin-bottom: -3vh;
-}
-.boxes .box h2{
-    margin-bottom: -5vh;
-}
-.boxes .box .btn2 {
-    width: 70vw;
-    height: 50px;
-    margin: 0 auto;
-}
-
-
-
 
 
