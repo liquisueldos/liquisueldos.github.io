@@ -1,0 +1,269 @@
+/* ----- GLOBAL SETTINGS ----- */
+
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@500;600;700&display=swap');
+
+*, 
+*::before,
+*::after{
+  padding: 3vh 4vw;
+  margin: 0;
+  box-sizing: border-box;
+}
+body{
+    overflow-x: hidden;
+    font-family: "Nunito", sans-serif;
+    background-color: var(--lightGreen);
+}
+html{
+    scroll-behavior: smooth;
+}
+img{
+    width: 100%;
+}
+a{
+    text-decoration: none;
+}
+main{
+    width: 100vw;
+}
+div{
+    padding: 0;
+}
+
+.spacer{
+    height: 10vh;
+    width: 100vw;
+    transform: translateX(-9vw);
+}
+
+/* Color Pallette */
+
+:root{
+    --green: #43d893;
+    --lightGreen: #d1ffe7;
+    --light: #efefef;
+    --dark: #191818;
+    --grey: #222222;
+    
+    
+    --gradient1: linear-gradient(to left, var(--green) 20%, var(--green) 80%);
+    --gradient2: linear-gradient(to left, var(--green) 20%, var(--green) 80%);
+
+    --shadow: 5px 5px 20px rgba(70, 80, 80, 0.3);
+}
+
+
+/* BUTTONS STYLINGS */
+
+.btn, .btn1, .btn2{
+    width: 84vw;
+    height: 8vh;
+    border-radius: 8px;
+    margin: 4vh 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s ease-in-out;
+    font-family: "Nunito", sans-serif;
+}
+.btn1, .btn2{
+    margin-top: 4vh;
+}
+
+/* Button */
+
+.btn{
+    background-image: var(--gradient1);
+    color: var(--light);
+}
+.btn:hover{
+    background-image: var(--gradient2);
+}
+
+/* Button 1 */
+
+.btn1{
+    border-style: solid;
+    border-color: var(--lightGreen);
+
+    color: var(--light);
+    background-color: var(--green);
+}
+.btn1:hover{
+    background-color: transparent;
+    border-color: var(--green);
+    color: var(--green);
+}
+
+/* Button 2 */
+
+.btn2{
+    border-style: solid;
+    border-color: var(--green);
+
+    color: var(--green);
+    background-color: transparent;
+}
+.btn2:hover{
+    background-color: var(--green);
+    color: var(--light);
+}
+
+/* LOGIN | SIGNUP PAGE */
+
+#login body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+input{
+    height: 9vh;
+    width: 84vw;
+    outline: none;
+    margin: 0.5vh 0;
+    padding-left: 15px;
+    border-radius: 8px;
+    border: 2px solid var(--lightGreen);
+    font-size: 18px;
+    font-family: "Nunito", sans-serif;
+    transition: all 0.3s ease;
+    color: var(--dark);
+}
+input:focus {
+    border-color: var(--green);
+}
+
+select{
+    appearance: none;
+    height: 10vh;
+    width: 84vw;
+    outline: none;
+    margin: 0.5vh 0;
+    padding-left: 15px;
+    border-radius: 8px;
+    border: 2px solid var(--lightGreen);
+    color: var(--dark);
+    font-size: 18px;
+    background-color: white;
+    font-family: "Nunito", sans-serif;
+    transition: all 0.3s ease;
+}
+select:focus{
+    border-color: var(--green);
+}
+
+/* Range */
+
+input[type="range"] {
+    width: 100%;
+    margin: 0 3vw;
+    margin-top: -5vh;
+}
+
+
+/* HEADER */
+
+header .banner{
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    width: 100vw;
+    height: 15vh;
+    padding: 0 5vw;
+
+    color: var(--light);
+    background-color: var(--green);
+    transform: translate(-12vw, -9vh);
+}
+header a{
+    text-decoration: none;
+    padding: 0;
+}
+header a i{
+    padding: 0;
+    color: var(--light);
+    font-size: 10vw;
+}
+header .nav a i:hover{
+    font-size: 12vw;
+}
+
+/* FOOTER */
+
+footer {
+    position: fixed; 
+    bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 100vw;
+    height: 10vh;
+    padding: auto 4vw;
+    background-color: var(--green);
+    transform: translateX(-8vw);
+    z-index: 10;
+}
+footer a{
+    text-decoration: none;
+    padding: 0;
+}
+footer a i{
+    padding: 0;
+    color: var(--light);
+    font-size: 6vw;
+}
+footer .nav a i:hover{
+    font-size: 8vw;
+}
+
+
+/* BOXES */
+
+.boxes {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.boxes a {
+    text-decoration: none;
+}
+.boxes .box {
+    display: flex;
+    flex-direction: column;
+    justify-content: top;
+
+    color: var(--dark);
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: var(--shadow);
+
+    width: 80vw;
+    height: 420px;
+    margin-top: 5vh;
+    padding: 2.5px 5px;
+    overflow: hidden;
+}
+.boxes .box img {
+    border-radius: 6px;
+    max-width: 100%;
+    height: auto;
+    margin-bottom: -3vh;
+}
+.boxes .box h2{
+    margin-bottom: -5vh;
+}
+.boxes .box .btn2 {
+    width: 70vw;
+    height: 50px;
+    margin: 0 auto;
+}
+
+
+
+
+
