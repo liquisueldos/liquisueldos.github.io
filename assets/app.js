@@ -9,6 +9,25 @@ async function getUsers() {
         })
 }
 
+// Hash Password
+async function hashPassword(password, salt) {
+    const encoder = new TextEncoder();
+    const data = encoder.encode(password + salt);
+
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+
+    const hashedPassword = Array.from(new Uint8Array(hashBuffer))
+        .map(byte => byte.toString(16).padStart(2, '0'))
+        .join('');
+
+    return hashedPassword;
+}
+async function Hash(password) {
+    const salt = 'randomSalt123';
+    const hashedPassword = await hashPassword(password, salt);
+    return hashedPassword;
+}
+
 // Email and Password Authentication
 function authenticateEmail(email, users) {
     return !users.some(user => user.EMAIL === email)
@@ -34,7 +53,9 @@ if (document.getElementById("login")) {
             window.location.href = 'signup.html'
         } else {
             console.log(`${email} is already registered.`)
-            if (authenticatePassword(email, password, allUsers)) {
+            const hashedPassword = await Hash(password)
+            console.log(hashedPassword)
+            if (authenticatePassword(email, hashedPassword, allUsers)) {
                 window.location.href = `homepage.html?email=${encodeURIComponent(email)}`
             } else {
                 alert('email and password do not match')
@@ -50,16 +71,21 @@ else if (document.getElementById("signup")) {
 
     // Create User
     async function createUser(name, surname, id, email, phoneNumber, address, password) {
+
         console.log('Creating user:', name, surname, id, email, phoneNumber, address, password)
 
         try {
+            const hashedPassword = await Hash(password)
+            
             const response = await fetch(apiUrl + '/users', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify({ name, surname, id, email, phoneNumber, address, password })
+                body: JSON.stringify({ name, surname, id, email, phoneNumber, address, hashedPassword })
             })
+
+            console.log('Server response: ', response)
 
             if (!response.ok) {
                 throw new Error('There was a problem connecting to the network')
