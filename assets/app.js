@@ -11,21 +11,21 @@ async function getUsers() {
 
 // Hash Password
 async function hashPassword(password, salt) {
-    const encoder = new TextEncoder();
-    const data = encoder.encode(password + salt);
+    const encoder = new TextEncoder()
+    const data = encoder.encode(password + salt)
 
-    const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+    const hashBuffer = await crypto.subtle.digest('SHA-256', data)
 
     const hashedPassword = Array.from(new Uint8Array(hashBuffer))
         .map(byte => byte.toString(16).padStart(2, '0'))
-        .join('');
+        .join('')
 
-    return hashedPassword;
+    return hashedPassword
 }
 async function Hash(password) {
-    const salt = 'randomSalt123';
-    const hashedPassword = await hashPassword(password, salt);
-    return hashedPassword;
+    const salt = 'randomSalt123'
+    const hashedPassword = await hashPassword(password, salt)
+    return hashedPassword
 }
 
 // Email and Password Authentication
@@ -52,7 +52,7 @@ if (document.getElementById("login")) {
             alert(`${email} is not a registered user.`)
             window.location.href = 'signup.html'
         } else {
-            console.log(`${email} is already registered.`)
+            console.log(`${email} is registered.`)
             const hashedPassword = await Hash(password)
             console.log(hashedPassword)
             if (authenticatePassword(email, hashedPassword, allUsers)) {
@@ -84,8 +84,6 @@ else if (document.getElementById("signup")) {
                 },
                 body: JSON.stringify({ name, surname, id, email, phoneNumber, address, hashedPassword })
             })
-
-            console.log('Server response: ', response)
 
             if (!response.ok) {
                 throw new Error('There was a problem connecting to the network')
@@ -128,8 +126,14 @@ else if (document.getElementById("signup")) {
 
 }
 
-// Homepage
-else if (document.getElementById("homepage")) {
+
+// All pages 
+else if (document.getElementById("homepage") || document.getElementById("employee")) {
+
+    // Navigation
+    function navigateTo (page) {
+        window.location.href = `${page}.html?email=${encodeURIComponent(email)}`
+    }
 
     // Get Email from url
     function getEmailFromURL() {
@@ -145,6 +149,7 @@ else if (document.getElementById("homepage")) {
         }
         const user = await response.json()
         document.getElementById("welcome").textContent = "¡ Hola " + user.NOMBRE + " !"
+        
     }
 
     // Check if user is logged in
@@ -163,5 +168,24 @@ else if (document.getElementById("homepage")) {
 
 }
 
+// Pages
+document.addEventListener('DOMContentLoaded', function () {
 
+    // Homepage 
+    if (document.getElementById("homepage")) {
 
+        // Employee Btn
+        const employeeBtn = document.getElementById("employee-btn")
+        employeeBtn.onclick = () => navigateTo('employee')
+
+    }
+
+    // Employee 
+    if (document.getElementById("employee")) {
+
+        // Homepage Btn
+        const homepageBtn = document.getElementById("homepage-btn")
+        homepageBtn.onclick = () => navigateTo('homepage')
+
+    }
+});

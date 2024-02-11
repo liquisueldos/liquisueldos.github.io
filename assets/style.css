@@ -162,6 +162,17 @@ input[type="range"] {
     margin-top: -5vh;
 }
 
+/* Checkbox */
+input[type="checkbox"] {
+    width: 20px;
+    margin-right: 5px;
+}
+
+.checkbox {
+    padding-left: 2vw;
+    display: flex;
+    align-items: center; 
+}
 
 /* HEADER */
 
@@ -174,6 +185,7 @@ header .banner{
     width: 100vw;
     height: 15vh;
     padding: 0 5vw;
+    z-index: 1;
 
     color: var(--light);
     background-color: var(--green);
@@ -205,7 +217,7 @@ footer {
     padding: auto 4vw;
     background-color: var(--green);
     transform: translateX(-8vw);
-    z-index: 10;
+    z-index: 1;
 }
 footer a{
     text-decoration: none;
@@ -221,6 +233,10 @@ footer .nav a i:hover{
 }
 
 
+/* EMPLOYEE PAGE */
 
+#employee form {
+    transform: translateX(-4vw);
+}
 
 
