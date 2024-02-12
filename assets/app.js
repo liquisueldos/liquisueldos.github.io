@@ -176,7 +176,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Employee Btn
         const employeeBtn = document.getElementById("employee-btn")
-        employeeBtn.onclick = () => navigateTo('employee')
+        employeeBtn.addEventListener('click', () => navigateTo('employee'))
+        employeeBtn.addEventListener('touchstart', () => navigateTo('employee'))
 
     }
 
@@ -185,7 +186,9 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Homepage Btn
         const homepageBtn = document.getElementById("homepage-btn")
-        homepageBtn.onclick = () => navigateTo('homepage')
+        homepageBtn.addEventListener('click', () => navigateTo('homepage'))
+        homepageBtn.addEventListener('touchstart', () => navigateTo('homepage'))
 
     }
-});
+})
+
