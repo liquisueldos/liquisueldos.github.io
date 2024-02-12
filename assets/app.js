@@ -1,8 +1,8 @@
 const apiUrl = 'https://liquisueldos-server.glitch.me'
 
-// Get all users
-async function getUsers() {
-    return fetch(apiUrl + '/users')
+// Get all from Table
+async function getAll (table) {
+    return fetch(apiUrl + `/${table}`)
         .then(response => response.json())
         .catch(error => {
             console.error('Error fetching users: ', error)
@@ -46,7 +46,7 @@ if (document.getElementById("login")) {
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
 
-        const allUsers = await getUsers()
+        const allUsers = await getAll('users')
 
         if (authenticateEmail(email, allUsers)) {
             alert(`${email} is not a registered user.`)
@@ -109,7 +109,7 @@ else if (document.getElementById("signup")) {
         const password = document.getElementById("password").value
 
         try {
-            const allUsers = await getUsers()
+            const allUsers = await getAll('users')
             if (authenticateEmail(email, allUsers)) {
                 await createUser(name, surname, id, email, phoneNumber, address, password)
                 console.log('User created successfully')
@@ -168,16 +168,18 @@ else if (document.getElementById("homepage") || document.getElementById("employe
 
 }
 
-// Pages
-document.addEventListener('DOMContentLoaded', function () {
+document.addEventListener('DOMContentLoaded', async function () {
 
     // Homepage 
     if (document.getElementById("homepage")) {
 
         // Employee Btn
         const employeeBtn = document.getElementById("employee-btn")
-        employeeBtn.addEventListener('click', () => navigateTo('employee'))
-        employeeBtn.addEventListener('touchstart', () => navigateTo('employee'))
+        employeeBtn.addEventListener('click', navigateTo.bind(null, 'employee'))
+        employeeBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault() 
+            navigateTo('employee')
+        })
 
     }
 
@@ -186,9 +188,83 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Homepage Btn
         const homepageBtn = document.getElementById("homepage-btn")
-        homepageBtn.addEventListener('click', () => navigateTo('homepage'))
-        homepageBtn.addEventListener('touchstart', () => navigateTo('homepage'))
+        homepageBtn.addEventListener('click', navigateTo.bind(null, 'homepage'))
+        homepageBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault() 
+            navigateTo('homepage')
+        })
 
+        // Authenticate Employee
+        function authenticateEmployee(id, employees) {
+            return !employees.some(employee => employee.CEDULA === id)
+        }
+
+        // Create Employee
+        async function createEmployee(name, surname, id, date, job, children, civilStatus) {
+
+            console.log('Creating employee:', name, surname, id, date, job, children, civilStatus)
+    
+            try {
+                const response = await fetch(apiUrl + '/employees', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ name, surname, id, date, job, children, civilStatus })
+                })
+    
+                if (!response.ok) {
+                    throw new Error('There was a problem connecting to the network')
+                }
+    
+                const data = await response.json()
+                console.log('Employee created:', data)
+    
+            } catch (error) {
+                console.error('Error:', error)
+            }
+        }
+
+        // Add Employee 
+        var addEmployeeBtn = document.getElementById("add-employee")
+        addEmployeeBtn.addEventListener('click', async function () {
+
+            const name = document.getElementById("name").value
+            const surname = document.getElementById("surname").value
+            const id = document.getElementById("id").value
+            const date = document.getElementById("date").value
+            const job = document.getElementById("job").value
+            let children = undefined
+            const childrenCheckbox = document.getElementById("children").value
+            const civilStatus = document.getElementById("civil-status").value
+
+            if (childrenCheckbox == 'on') {
+                children = 'No'
+            } else if (childrenCheckbox == 'off') {
+                children = 'Si'
+            }
+
+            try {
+                const allEmployees = await getAll('employees')
+                if (authenticateEmployee(id, allEmployees)) {
+                    await createEmployee(name, surname, id, date, job, children, civilStatus)
+                    console.log('Employee created successfully')
+                } else {
+                    alert(`${id} was already created.`)
+                }
+                
+            } catch (error) {
+                console.error('Error creating user:', error)
+            }
+
+        })
     }
 })
+
+// Function to navigate to a page
+function navigateTo(page) {
+    const email = getEmailFromURL()
+    window.location.href = `${page}.html?email=${encodeURIComponent(email)}`
+}
+
 
