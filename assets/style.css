@@ -183,7 +183,7 @@ header .banner{
     justify-content: space-between;
 
     width: 100vw;
-    height: 15vh;
+    height: 12.5vh;
     padding: 0 5vw;
     z-index: 1;
 
@@ -233,10 +233,17 @@ footer .nav a i:hover{
 }
 
 
+/* HOMEPAGE */
+
+#homepage header {
+    height: 15vh;
+}
+
 /* EMPLOYEE PAGE */
 
 #employee form {
     transform: translateX(-4vw);
 }
+
 
 
