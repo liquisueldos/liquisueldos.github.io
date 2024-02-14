@@ -246,11 +246,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         
         const email = getEmailFromURL()
         await displayEmployee()
-
          
     }
 
-    // Add Employee 
+    // Add Employee Page
     if (document.getElementById("add-employee")) {
 
         // Homepage Btn
@@ -270,14 +269,14 @@ document.addEventListener('DOMContentLoaded', async function () {
         })
 
         // Authenticate Employee
-        function authenticateEmployee(id, employees) {
+        async function authenticateEmployee(id, employees) {
             return !employees.some(employee => employee.CEDULA === id)
         }
 
         // Create Employee
-        async function createEmployee(name, surname, id, date, job, children, civilStatus) {
+        async function createEmployee(user, name, surname, id, date, job, children, civilStatus) {
 
-            console.log('Creating employee:', name, surname, id, date, job, children, civilStatus)
+            console.log('Creating employee:', user, name, surname, id, date, job, children, civilStatus)
     
             try {
                 const response = await fetch(apiUrl + '/employees', {
@@ -285,7 +284,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                     headers: {
                         'Content-Type': 'application/json'
                     },
-                    body: JSON.stringify({ name, surname, id, date, job, children, civilStatus })
+                    body: JSON.stringify({ user, name, surname, id, date, job, children, civilStatus })
                 })
     
                 if (!response.ok) {
@@ -301,9 +300,10 @@ document.addEventListener('DOMContentLoaded', async function () {
         }
 
         // Add Employee 
-        var addEmployeeBtn = document.getElementById("add-employee")
+        var addEmployeeBtn = document.getElementById("add-employee-form-btn")
         addEmployeeBtn.addEventListener('click', async function () {
 
+            const user = getEmailFromURL()
             const name = document.getElementById("name").value
             const surname = document.getElementById("surname").value
             const id = document.getElementById("id").value
@@ -321,8 +321,8 @@ document.addEventListener('DOMContentLoaded', async function () {
 
             try {
                 const allEmployees = await getAll('employees')
-                if (authenticateEmployee(id, allEmployees)) {
-                    await createEmployee(name, surname, id, date, job, children, civilStatus)
+                if (await authenticateEmployee(id, allEmployees)) {
+                    await createEmployee(user, name, surname, id, date, job, children, civilStatus)
                     console.log('Employee created successfully')
                 } else {
                     alert(`${id} was already created.`)
