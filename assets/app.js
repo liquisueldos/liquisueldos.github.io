@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', async function () {
                 document.getElementById("employee-civil-status").textContent = "Estado Civil: " + employee.ESTADO_CIVIL
                 document.getElementById("employee-children").textContent = "Hijos: " + employee.HIJOS
             } else {
-                console.log("Employee not found")
+                document.getElementById("employee-name").textContent = "Empleado no encontrado"
             }
         }
         
