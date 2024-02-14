@@ -44,7 +44,14 @@ div{
     --light: #efefef;
     --dark: #191818;
     --grey: #222222;
-    
+
+
+    --red:  #e65c7b;
+    --yellow: #fecd66;
+    --blue: #5dadec;
+    --pink: #ee9ca7;
+    --purple: #b057f9;
+
     
     --gradient1: linear-gradient(to left, var(--green) 20%, var(--green) 80%);
     --gradient2: linear-gradient(to left, var(--green) 20%, var(--green) 80%);
@@ -238,6 +245,61 @@ footer .nav a i:hover{
 #homepage header {
     height: 15vh;
 }
+
+/* Homepage - functions */
+
+#homepage .functions {
+    display: flex;
+    transform: translate(-6vw, -10vh);
+}
+#homepage .functions .group{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+#homepage .functions .group .function {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: end;
+
+    height: 23vh;
+    width: 40vw;
+    margin: 1vh 2vw;
+    border-radius: 5px;
+
+    color: var(--light);
+    background-color: var(--green);
+}
+
+/* Homepage - function colours */
+
+#homepage .functions .group:nth-child(1) .function:nth-child(1) {
+    background-color: var(--green);
+}
+
+#homepage .functions .group:nth-child(1) .function:nth-child(2) {
+    background-color: var(--red);
+}
+
+#homepage .functions .group:nth-child(1) .function:nth-child(3) {
+    background-color: var(--purple);
+}
+
+#homepage .functions .group:nth-child(2) .function:nth-child(1) {
+    background-color: var(--blue);
+}
+
+#homepage .functions .group:nth-child(2) .function:nth-child(2) {
+    background-color: var(--yellow);
+}
+
+#homepage .functions .group:nth-child(2) .function:nth-child(3) {
+    background-color: var(--pink);
+}
+
+
 
 /* ADD EMPLOYEE PAGE */
 
