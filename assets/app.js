@@ -189,7 +189,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         addEmployeeBtn.addEventListener('click', navigateTo.bind(null, 'add-employee'))
         addEmployeeBtn.addEventListener('touchstart', function(event) {
             event.preventDefault() 
-            navigateTo('employee')
+            navigateTo('add-employee')
         })
 
         // Employees Btn
@@ -218,7 +218,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         addEmployeeBtn.addEventListener('click', navigateTo.bind(null, 'add-employee'))
         addEmployeeBtn.addEventListener('touchstart', function(event) {
             event.preventDefault() 
-            navigateTo('employee')
+            navigateTo('add-employee')
         })
 
         // Find employee by USUARIO
