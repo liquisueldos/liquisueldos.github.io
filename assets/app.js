@@ -28,7 +28,7 @@ async function Hash(password) {
     return hashedPassword
 }
 
-// Email and Password Authentication
+// Authentication
 function authenticateEmail(email, users) {
     return !users.some(user => user.EMAIL === email)
 }
@@ -128,17 +128,30 @@ else if (document.getElementById("signup")) {
 
 
 // All pages 
-else if (document.getElementById("homepage") || document.getElementById("employee")) {
+else if (
+    document.getElementById("homepage") || 
+    document.getElementById("add-employee") ||
+    document.getElementById("employees")  
+) {
 
     // Navigation
     function navigateTo (page) {
+        const email = getEmailFromURL()
         window.location.href = `${page}.html?email=${encodeURIComponent(email)}`
     }
 
-    // Get Email from url
     function getEmailFromURL() {
         const urlParams = new URLSearchParams(window.location.search)
-        return urlParams.get('email') 
+        const email = urlParams.get('email')
+        return email
+    }
+
+    // Delete email from URL
+    function  deleteEmailFromURL() {
+        const urlParams = new URLSearchParams(window.location.search)
+        urlParams.delete('email')
+        const newUrl = window.location.pathname + (urlParams.toString() ? `?${urlParams.toString()}` : '')
+        window.history.replaceState({}, '', newUrl)
     }
 
     // Get user through email           
@@ -148,23 +161,21 @@ else if (document.getElementById("homepage") || document.getElementById("employe
             throw new Error('Network response was not ok')
         }
         const user = await response.json()
-        document.getElementById("welcome").textContent = "¡ Hola " + user.NOMBRE + " !"
-        
+        return user
     }
-
+    
     // Check if user is logged in
-    const email = getEmailFromURL()
-    if (email != null) {
-        getUserByEmail(email)
-    } else {
-        window.location.href = 'index.html'
+    async function checkUserLoggedIn() {
+        const email = getEmailFromURL()
+        
+        if (email != null) {
+            user = await getUserByEmail(email)
+            document.getElementById("welcome").textContent = "¡ Hola " + user.NOMBRE + " !"
+        } else {
+            window.location.href = 'index.html'
+        }
     }
-
-    // Delete email from URL
-    const urlParams = new URLSearchParams(window.location.search)
-    urlParams.delete('email')
-    const newUrl = window.location.pathname + (urlParams.toString() ? `?${urlParams.toString()}` : '')
-    window.history.replaceState({}, '', newUrl)
+    checkUserLoggedIn()
 
 }
 
@@ -173,18 +184,26 @@ document.addEventListener('DOMContentLoaded', async function () {
     // Homepage 
     if (document.getElementById("homepage")) {
 
-        // Employee Btn
-        const employeeBtn = document.getElementById("employee-btn")
-        employeeBtn.addEventListener('click', navigateTo.bind(null, 'employee'))
-        employeeBtn.addEventListener('touchstart', function(event) {
+        // Add Employee Btn
+        const addEmployeeBtn = document.getElementById("add-employee-btn")
+        addEmployeeBtn.addEventListener('click', navigateTo.bind(null, 'add-employee'))
+        addEmployeeBtn.addEventListener('touchstart', function(event) {
             event.preventDefault() 
             navigateTo('employee')
         })
 
+        // Employees Btn
+        const employeesBtn = document.getElementById("employees-btn")
+        employeesBtn.addEventListener('click', navigateTo.bind(null, 'employees'))
+        employeesBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault() 
+            navigateTo('employees')
+        })
+
     }
 
-    // Employee 
-    if (document.getElementById("employee")) {
+    // Employees
+    if (document.getElementById("employees")) {
 
         // Homepage Btn
         const homepageBtn = document.getElementById("homepage-btn")
@@ -192,6 +211,62 @@ document.addEventListener('DOMContentLoaded', async function () {
         homepageBtn.addEventListener('touchstart', function(event) {
             event.preventDefault() 
             navigateTo('homepage')
+        })
+
+        // Add Employee Btn
+        const addEmployeeBtn = document.getElementById("add-employee-btn")
+        addEmployeeBtn.addEventListener('click', navigateTo.bind(null, 'add-employee'))
+        addEmployeeBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault() 
+            navigateTo('employee')
+        })
+
+        // Find employee by USUARIO
+        async function findEmployee(email) {
+            const allEmployees = await getAll('employees')
+            return allEmployees.find(employee => employee.USUARIO === email)
+        }
+
+        // Display employee
+        async function displayEmployee() {
+            const email = getEmailFromURL()
+            
+            const employee = await findEmployee(email)
+            if (employee) {
+                document.getElementById("employee-name").textContent = employee.NOMBRE + " " + employee.APELLIDO
+                document.getElementById("employee-job").textContent = "Cargo: " + employee.CARGO
+                document.getElementById("employee-id").textContent = "Cedula: " + employee.CEDULA
+                document.getElementById("employee-date").textContent = "Fecha de nacimiento: " + employee.FECHA_DE_NACIMIENTO
+                document.getElementById("employee-civil-status").textContent = "Estado Civil: " + employee.ESTADO_CIVIL
+                document.getElementById("employee-children").textContent = "Hijos: " + employee.HIJOS
+            } else {
+                console.log("Employee not found")
+            }
+        }
+        
+        const email = getEmailFromURL()
+        await displayEmployee()
+
+         
+    }
+
+    // Add Employee 
+    if (document.getElementById("add-employee")) {
+
+        // Homepage Btn
+        const homepageBtn = document.getElementById("homepage-btn")
+        homepageBtn.addEventListener('click', navigateTo.bind(null, 'homepage'))
+        homepageBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault() 
+            navigateTo('homepage')
+        })
+
+        // Employees Btn
+        const employeeBtn = document.getElementById("employees-btn")
+        employeeBtn.addEventListener('click', navigateTo.bind(null, 'employees'))
+        employeeBtn.addEventListener('touchstart', function(event) {
+            event.preventDefault() 
+            navigateTo('employees')
         })
 
         // Authenticate Employee
@@ -261,10 +336,6 @@ document.addEventListener('DOMContentLoaded', async function () {
     }
 })
 
-// Function to navigate to a page
-function navigateTo(page) {
-    const email = getEmailFromURL()
-    window.location.href = `${page}.html?email=${encodeURIComponent(email)}`
-}
+
 
 

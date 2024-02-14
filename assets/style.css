@@ -239,9 +239,9 @@ footer .nav a i:hover{
     height: 15vh;
 }
 
-/* EMPLOYEE PAGE */
+/* ADD EMPLOYEE PAGE */
 
-#employee form {
+#add-employee form {
     transform: translateX(-4vw);
 }
 
