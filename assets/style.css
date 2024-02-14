@@ -250,7 +250,7 @@ footer .nav a i:hover{
 
 #homepage .functions {
     display: flex;
-    transform: translate(-6vw, -10vh);
+    transform: translate(-9vw, -10vh);
 }
 #homepage .functions .group{
     display: flex;
@@ -258,15 +258,15 @@ footer .nav a i:hover{
     align-items: center;
     justify-content: space-evenly;
 }
-#homepage .functions .group .function {
+#homepage .functions .group a .function {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: end;
 
     height: 23vh;
-    width: 40vw;
-    margin: 1vh 2vw;
+    width: 43vw;
+    margin: -2vh -2vw;
     border-radius: 5px;
 
     color: var(--light);
@@ -275,29 +275,30 @@ footer .nav a i:hover{
 
 /* Homepage - function colours */
 
-#homepage .functions .group:nth-child(1) .function:nth-child(1) {
+#homepage .functions .group:nth-child(1) a:nth-child(1) .function {
     background-color: var(--green);
 }
 
-#homepage .functions .group:nth-child(1) .function:nth-child(2) {
+#homepage .functions .group:nth-child(1) a:nth-child(2) .function {
     background-color: var(--red);
 }
 
-#homepage .functions .group:nth-child(1) .function:nth-child(3) {
+#homepage .functions .group:nth-child(1) a:nth-child(3) .function {
     background-color: var(--purple);
 }
 
-#homepage .functions .group:nth-child(2) .function:nth-child(1) {
+#homepage .functions .group:nth-child(2) a:nth-child(1) .function {
     background-color: var(--blue);
 }
 
-#homepage .functions .group:nth-child(2) .function:nth-child(2) {
+#homepage .functions .group:nth-child(2) a:nth-child(2) .function {
     background-color: var(--yellow);
 }
 
-#homepage .functions .group:nth-child(2) .function:nth-child(3) {
+#homepage .functions .group:nth-child(2) a:nth-child(3) .function {
     background-color: var(--pink);
 }
+
 
 
 
