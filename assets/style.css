@@ -117,6 +117,18 @@ div{
     color: var(--light);
 }
 
+/* Terms and Conditions */
+
+#signup p {
+    font-size: 12px;
+    margin-left: -3vw;
+}
+#signup p a{
+    color: var(--green);
+    margin-left: -3vw;
+    font-style: underline;
+}
+
 /* LOGIN | SIGNUP PAGE */
 
 #login body{

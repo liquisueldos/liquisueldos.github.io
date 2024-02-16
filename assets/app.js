@@ -37,6 +37,7 @@ function authenticatePassword(email, password, users) {
     return user && user.CONTRASEÑA === password
 }
 
+
 // Log In
 if (document.getElementById("login")) {
     var loginBtn = document.getElementById("loginBtn")
@@ -136,10 +137,11 @@ else if (
 
     // Navigation
     function navigateTo (page) {
-        const email = getEmailFromURL()
+        const email = localStorage.getItem('email')
         window.location.href = `${page}.html?email=${encodeURIComponent(email)}`
     }
 
+    // Get email from URL
     function getEmailFromURL() {
         const urlParams = new URLSearchParams(window.location.search)
         const email = urlParams.get('email')
@@ -167,6 +169,8 @@ else if (
     // Check if user is logged in
     async function checkUserLoggedIn() {
         const email = getEmailFromURL()
+        localStorage.setItem('email', email)
+        deleteEmailFromURL()
         
         if (email != null) {
             user = await getUserByEmail(email)
@@ -229,7 +233,7 @@ document.addEventListener('DOMContentLoaded', async function () {
 
         // Display employee
         async function displayEmployee() {
-            const email = getEmailFromURL()
+            const email = localStorage.getItem('email')
             
             const employee = await findEmployee(email)
             if (employee) {
