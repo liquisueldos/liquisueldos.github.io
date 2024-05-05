@@ -10,7 +10,12 @@ async function getAll (table) {
 }
 
 // Keep Server turned on:
-setInterval(getAll(users), 10 * 60 * 1000)
+function turnServerOn() {
+    const allUsersKSO = getAll(users)
+    console.log(allUsersKSO)
+}
+turnServer0n()
+setInterval(turnServerOn, 10 * 60 * 1000)
 
 // Hash Password
 async function hashPassword(password, salt) {
