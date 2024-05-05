@@ -5,7 +5,6 @@
 *, 
 *::before,
 *::after{
-  padding: 3vh 4vw;
   margin: 0;
   box-sizing: border-box;
 }
@@ -59,6 +58,7 @@ div{
     --shadow: 5px 5px 20px rgba(70, 80, 80, 0.3);
 }
 
+
 /* LOADER */
 
 #loader {
@@ -72,13 +72,13 @@ div{
     z-index: 100;
 }
 
+
 /* BUTTONS STYLINGS */
 
 .btn, .btn1, .btn2{
-    width: 84vw;
+    width: 30vw;
     height: 8vh;
     border-radius: 8px;
-    margin: 4vh 0;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -87,7 +87,7 @@ div{
     font-family: "Nunito", sans-serif;
 }
 .btn1, .btn2{
-    margin-top: 4vh;
+    margin-top: 2vh;
 }
 
 /* Button */
@@ -129,29 +129,49 @@ div{
     color: var(--light);
 }
 
-/* Terms and Conditions */
-
-#signup p {
-    font-size: 12px;
-    margin-left: -3vw;
-}
-#signup p a{
-    color: var(--green);
-    margin-left: -3vw;
-    font-style: underline;
-}
 
 /* LOGIN | SIGNUP PAGE */
 
-#login body{
+#login, #signup {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
+}
+#login form, #signup form{
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: space-evenly;
+    width: 30vw;
+    height: 70vh;
+    margin-top: 12.5vh;
+}
+#login form{
+    position: fixed;
+}
+#signup form{
+    height: 90vh;
+    width: 61vw;
+    margin-top: 3vh;
+}
+#signup form .groups {
+    display: flex;
+}
+#signup form #password {
+    width: 100%;
+}
+#signup form .btn1,
+#signup form .btn2 {
+    width: 100%;
+}
+#login h1, #login p,
+#signup h1, #signup p {
+    margin-bottom: 2vh;
 }
 input{
     height: 9vh;
-    width: 84vw;
+    width: 30vw;
     outline: none;
     margin: 0.5vh 0;
     padding-left: 15px;
@@ -215,12 +235,11 @@ header .banner{
 
     width: 100vw;
     height: 12.5vh;
-    padding: 0 5vw;
+    padding: 0 3vw;
     z-index: 1;
 
     color: var(--light);
     background-color: var(--green);
-    transform: translate(-12vw, -9vh);
 }
 header a{
     text-decoration: none;
@@ -229,11 +248,9 @@ header a{
 header a i{
     padding: 0;
     color: var(--light);
-    font-size: 10vw;
+    font-size: 45px;
 }
-header .nav a i:hover{
-    font-size: 12vw;
-}
+
 
 /* FOOTER */
 
@@ -243,11 +260,12 @@ footer {
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+
     width: 100vw;
     height: 10vh;
     padding: auto 4vw;
+
     background-color: var(--green);
-    transform: translateX(-8vw);
     z-index: 1;
 }
 footer a{
@@ -257,40 +275,35 @@ footer a{
 footer a i{
     padding: 0;
     color: var(--light);
-    font-size: 6vw;
-}
-footer .nav a i:hover{
-    font-size: 8vw;
+    font-size: 30px;
 }
 
 
 /* HOMEPAGE */
 
-#homepage header {
-    height: 15vh;
-}
-
 /* Homepage - functions */
 
 #homepage .functions {
     display: flex;
-    transform: translate(-9vw, -10vh);
+    position: fixed;
+    transform: translate(2vw, 15vh);
 }
-#homepage .functions .group{
+#homepage .functions .column{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-evenly;
 }
-#homepage .functions .group a .function {
+#homepage .functions .column a .function {
     display: flex;
     flex-direction: column;
     align-items: start;
     justify-content: end;
 
-    height: 23vh;
-    width: 43vw;
-    margin: -2vh -2vw;
+    height: 22vh;
+    width: 47vw;
+    margin: 1vh 0.5vw;
+    padding: 2vh 1vw;
     border-radius: 5px;
 
     color: var(--light);
@@ -299,31 +312,29 @@ footer .nav a i:hover{
 
 /* Homepage - function colours */
 
-#homepage .functions .group:nth-child(1) a:nth-child(1) .function {
+#homepage .functions .column:nth-child(1) a:nth-child(1) .function {
     background-color: var(--green);
 }
 
-#homepage .functions .group:nth-child(1) a:nth-child(2) .function {
+#homepage .functions .column:nth-child(1) a:nth-child(2) .function {
     background-color: var(--red);
 }
 
-#homepage .functions .group:nth-child(1) a:nth-child(3) .function {
+#homepage .functions .column:nth-child(1) a:nth-child(3) .function {
     background-color: var(--purple);
 }
 
-#homepage .functions .group:nth-child(2) a:nth-child(1) .function {
+#homepage .functions .column:nth-child(2) a:nth-child(1) .function {
     background-color: var(--blue);
 }
 
-#homepage .functions .group:nth-child(2) a:nth-child(2) .function {
+#homepage .functions .column:nth-child(2) a:nth-child(2) .function {
     background-color: var(--yellow);
 }
 
-#homepage .functions .group:nth-child(2) a:nth-child(3) .function {
+#homepage .functions .column:nth-child(2) a:nth-child(3) .function {
     background-color: var(--pink);
 }
-
-
 
 
 /* ADD EMPLOYEE PAGE */
@@ -333,4 +344,186 @@ footer .nav a i:hover{
 }
 
 
+/* ACCOUNT TYPE PAGE */
 
+#account-type section {
+    display: flex;
+    position: fixed;
+}
+#account-type section a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 46vw;
+    height: 90vh;
+    margin: 5vh auto;
+    border-radius: 5px;
+    color: var(--light);
+}
+#account-type section a:first-child {
+    background-color: var(--red);
+    margin-left: 3vw;
+}
+#account-type section a:last-child {
+    background-color: var(--blue);
+    margin-left: 2vw;
+}
+
+
+/* ------------------------------------------------------ */
+                    /* RESPONSIVE */
+/* ------------------------------------------------------ */
+
+
+@media only screen and (max-width: 900px) {
+
+    *,
+    *::before,
+    *::after {
+        padding: 3vh 4vw;
+    }
+
+    /* BUTTONS STYLINGS | RESPONSIVE */
+
+    .btn, .btn1, .btn2{
+        width: 84vw;
+        height: 8vh;
+        border-radius: 8px;
+        margin: 2vh 0;
+    }
+
+
+
+    /* LOGIN | SIGNUP PAGE | RESPONSIVE */
+
+    #login form, #signup form{
+       width: 92vw;
+       height: 82vh;
+       margin-top: 0;
+
+       justify-content: center;
+    }
+    #login form .btn1 {
+        margin-bottom: 4vh;
+    }
+    #signup form {
+        height: 110vh;
+        margin-left: 4vw;
+    }
+    #signup form .groups {
+        flex-direction: column;
+    }
+    input{
+        height: 9vh;
+        width: 100%;
+        margin: 0.5vh 0;
+        padding-left: 15px;
+    }
+    select{
+        height: 10vh;
+        width: 100%;
+        margin: 0.5vh 0;
+        padding-left: 15px;
+    }
+
+    /* Range */
+
+    input[type="range"] {
+        width: 100%;
+        margin: 0 3vw;
+        margin-top: -5vh;
+    }
+
+    /* Checkbox */
+    input[type="checkbox"] {
+        width: 20px;
+        margin-right: 5px;
+    }
+
+    .checkbox {
+        padding-left: 2vw;
+    }
+
+    /* HEADER | RESPONSIVE */
+
+    header .banner{
+        width: 100vw;
+        height: 12.5vh;
+        padding: 0 3vw;
+        z-index: 1;
+        transform: translate(-12vw, -9vh);
+    }
+    header a{
+        padding: 0;
+    }
+    header a i{
+        padding: 0;
+        font-size: 40px;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+        width: 100vw;
+        height: 10vh;
+        padding: auto 4vw;
+        transform: translateX(-8vw);
+    }
+    footer a{
+        padding: 0;
+    }
+    footer a i{
+        padding: 0;
+        font-size: 20px;
+    }
+
+
+    /* HOMEPAGE | RESPONSIVE */
+
+    /* Homepage | Responsive - functions */
+
+    #homepage .functions {
+        transform: translate(-9vw, -1.5vh);
+    }
+    #homepage .functions .column{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    }
+    #homepage .functions .column a .function {
+        height: 23vh;
+        width: 43vw;
+        margin: -2vh -2vw;
+        border-radius: 5px;
+    }
+
+
+    /* ADD EMPLOYEE PAGE | RESPONSIVE */
+
+    #add-employee form {
+        transform: translateX(-4vw);
+    }
+
+
+    /* ACCOUNT TYPE PAGE | RESPONSIVE */
+
+    #account-type section {
+        flex-direction: column;
+        transform: translate(-9vw, -7vh);
+    }
+    #account-type section a {
+        width: 90vw;
+        height: 45.5vh;
+        margin: 1vh 2vw;
+    }
+    #account-type section a:first-child {
+        margin-left: 2vw;
+    }
+    #account-type section a:last-child {
+        margin-left: 2vw;
+    }
+
+}

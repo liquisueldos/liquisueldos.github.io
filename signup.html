@@ -8,17 +8,24 @@
 </head>
 <body id="signup">
     <div id="loader"></div>
-    <h1>Vamos a crearte una cuenta... ✏️</h1>
-    <input type="text" id="name" placeholder="Nombre" required>
-    <input type="text" id="surname" placeholder="Apellido" required>
-    <input type="number" id="id" placeholder="Cedula" required>
-    <input type="email" id="email" placeholder="Email" required>
-    <input type="tel" id="phone-number" placeholder="Celular" required>
-    <input type="text" id="address" placeholder="Direccion" required>
-    <input type="password" id="password" placeholder="Contraseña" required>
-    <a href="#" class="btn1" id="signupBtn">Registrarse</a>
-    <a href="index.html" class="btn2">Iniciar Sesion</a>
-    <p>Al registrarte aceptas los<a href="#">terminos y condiciones</a></p>
+    <form>
+        <h1>Vamos a crearte una cuenta... ✏️</h1>
+        <div class="groups">
+            <div>
+                <input type="text" id="name" placeholder="Nombre" required>
+                <input type="text" id="surname" placeholder="Apellido" required>
+                <input type="number" id="id" placeholder="Cedula" required>
+            </div>
+            <div>
+                <input type="email" id="email" placeholder="Email" required>
+                <input type="tel" id="phone-number" placeholder="Celular" required>
+                <input type="text" id="address" placeholder="Direccion" required>
+            </div>
+        </div>
+        <input type="password" id="password" placeholder="Contraseña" required>
+        <a href="#" class="btn1" id="signupBtn">Registrarse</a>
+        <a href="index.html" class="btn2">Iniciar Sesion</a>
+    </form>
 
     <script src="assets/app.js"></script>
 

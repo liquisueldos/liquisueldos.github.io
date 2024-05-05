@@ -9,14 +9,6 @@ async function getAll (table) {
         })
 }
 
-// Keep Server on
-async function turnServerOn() {
-    const allUsersKSO = await getAll('users')
-    console.log(`Keeping Server On... ${allUsersKSO}`)
-}
-turnServerOn()
-setInterval(turnServerOn, 10 * 60 * 1000)
-
 // Hash Password
 async function hashPassword(password, salt) {
     const encoder = new TextEncoder()
@@ -48,18 +40,19 @@ function authenticatePassword(email, password, users) {
 
 // Log In
 if (document.getElementById("login")) {
-
+    
     // Loader
     var loader = document.getElementById("loader")
     window.addEventListener("load", function(){
         loader.style.display = "none"
     })
-    
+
     var loginBtn = document.getElementById("loginBtn")
 
     // Check User existance
     async function userAuthentication() {
         loader.style.display = "block"
+
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
 
@@ -67,7 +60,7 @@ if (document.getElementById("login")) {
 
         if (authenticateEmail(email, allUsers)) {
             alert(`${email} is not a registered user.`)
-            window.location.href = 'signup.html'
+            window.location.href = 'account-type.html'
         } else {
             console.log(`${email} is registered.`)
             const hashedPassword = await Hash(password)
