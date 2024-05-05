@@ -11,7 +11,7 @@ async function getAll (table) {
 
 // Keep Server on
 async function turnServerOn() {
-    const allUsersKSO = await getAll(users)
+    const allUsersKSO = await getAll('users')
     console.log(`Keeping Server On... ${allUsersKSO}`)
 }
 turnServerOn()
