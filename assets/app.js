@@ -11,12 +11,8 @@ async function getAll (table) {
 
 // Keep Server on
 async function turnServerOn() {
-    try {
-        const allUsersKSO = await getAll(users)
-        console.log(allUsersKSO)
-    } catch (error) {
-        console.error('Error fetching users: ', error)
-    }
+    const allUsersKSO = await getAll(users)
+    console.log(`Keeping Server On... ${allUsersKSO}`)
 }
 turnServerOn()
 setInterval(turnServerOn, 10 * 60 * 1000)
