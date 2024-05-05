@@ -1,5 +1,11 @@
 const apiUrl = 'https://liquisueldos-server.glitch.me'
 
+// Loader
+var loader = getElementById("loader")
+window.addEventListener("load", function() {
+    loader.style.display = "none"
+})
+
 // Get all from Table
 async function getAll (table) {
     return fetch(apiUrl + `/${table}`)
@@ -52,6 +58,7 @@ if (document.getElementById("login")) {
 
     // Check User existance
     async function userAuthentication() {
+        loader.style.display = "block"
         const email = document.getElementById("email").value
         const password = document.getElementById("password").value
 
@@ -108,6 +115,7 @@ else if (document.getElementById("signup")) {
 
     var signupBtn = document.getElementById("signupBtn")
     signupBtn.addEventListener('click', async function () {
+        loader.style.display = "block"
         
         const name = document.getElementById("name").value
         const surname = document.getElementById("surname").value
