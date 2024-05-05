@@ -9,12 +9,16 @@ async function getAll (table) {
         })
 }
 
-// Keep Server turned on:
-function turnServerOn() {
-    const allUsersKSO = getAll(users)
-    console.log(allUsersKSO)
+// Keep Server on
+async function turnServerOn() {
+    try {
+        const allUsersKSO = await getAll(users)
+        console.log(allUsersKSO)
+    } catch (error) {
+        console.error('Error fetching users: ', error)
+    }
 }
-turnServer0n()
+turnServerOn()
 setInterval(turnServerOn, 10 * 60 * 1000)
 
 // Hash Password
