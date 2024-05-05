@@ -10,7 +10,7 @@ async function getAll (table) {
 }
 
 // Keep Server turned on:
-setInterval(getAll, 10 * 60 * 1000)
+setInterval(getAll(users), 10 * 60 * 1000)
 
 // Hash Password
 async function hashPassword(password, salt) {
