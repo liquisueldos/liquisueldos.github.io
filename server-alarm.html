@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LiquiSueldos | Server Alarm</title>
+    <!-- Google font - Cutive Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: black;
+            color: white;
+            font-family: 'Cutive Mono', sans-serif;
+            font-weight: 300;
+            font-style: normal;
+            font-size: small;
+        }
+    </style>
+</head>
+<body>
+    <h1>LS - Server Alarm System</h1>
+    <script>
+
+        const apiUrl = 'https://liquisueldos-server.glitch.me'
+
+        // Get all from Table
+        async function getAll (table) {
+            return fetch(apiUrl + `/${table}`)
+                .then(response => response.json())
+                .catch(error => {
+                    console.error('Error fetching users: ', error)
+                })
+        }
+
+        // Turn Server on by printing users
+        async function turnServerOn() {
+            try {
+                const users = await getAll('users')
+                console.log('All Users:', users)
+            } catch (error) {
+                console.error('Error printing users: ', error)
+            }
+        }
+
+        // Keep Server On
+        turnServerOn() // Initial fetch
+        setInterval(turnServerOn, 5 * 1000)
+
+    </script>
+</body>
+</html>
