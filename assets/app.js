@@ -40,7 +40,7 @@ function authenticatePassword(email, password, users) {
 
 // Log In
 if (document.getElementById("login")) {
-    
+
     // Loader
     var loader = document.getElementById("loader")
     window.addEventListener("load", function(){
@@ -179,6 +179,7 @@ else if (
             throw new Error('Network response was not ok')
         }
         const user = await response.json()
+        localStorage.setItem('user', user)
         return user
     }
     
@@ -264,7 +265,6 @@ document.addEventListener('DOMContentLoaded', async function () {
             }
         }
         
-        const email = getEmailFromURL()
         await displayEmployee()
          
     }
@@ -323,7 +323,8 @@ document.addEventListener('DOMContentLoaded', async function () {
         var addEmployeeBtn = document.getElementById("add-employee-form-btn")
         addEmployeeBtn.addEventListener('click', async function () {
 
-            const user = getEmailFromURL()
+            const user = localStorage.getItem('user')
+
             const name = document.getElementById("name").value
             const surname = document.getElementById("surname").value
             const id = document.getElementById("id").value
