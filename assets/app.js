@@ -179,7 +179,6 @@ else if (
             throw new Error('Network response was not ok')
         }
         const user = await response.json()
-        localStorage.setItem('user', user)
         return user
     }
     
@@ -323,7 +322,7 @@ document.addEventListener('DOMContentLoaded', async function () {
         var addEmployeeBtn = document.getElementById("add-employee-form-btn")
         addEmployeeBtn.addEventListener('click', async function () {
 
-            const user = localStorage.getItem('user')
+            const user = localStorage.getItem('email')
 
             const name = document.getElementById("name").value
             const surname = document.getElementById("surname").value
